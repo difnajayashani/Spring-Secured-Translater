@@ -3,6 +3,7 @@ package home;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -19,9 +20,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 
 @Test
+@ContextConfiguration(locations ={"classpath:spring-test-config.xml" })
+//@ContextConfiguration("*/hsenid/WEB-INF/spring-servlet.xml")
+
 @WebAppConfiguration
-@ContextConfiguration(locations ="classpath:/WEB-INF/spring-servlet.xml" )
-public class MainControllerTest {
+public class MainControllerTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
     private WebApplicationContext wac;
@@ -33,12 +36,31 @@ public class MainControllerTest {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
 
+    //test for navigating to welcome page
     @Test
-    public void getViewTest() throws Exception {
+    public void getWelcomeViewTest() throws Exception {
         this.mockMvc.perform(get("/")
                 .accept(MediaType.ALL))
                 .andExpect(status().isOk())
                 .andExpect(view().name("/view/welcome"));
+    }
+
+    //test for navigating to admin page
+    @Test
+    public void getAdminViewTest() throws Exception {
+        this.mockMvc.perform(get("/admin")
+                .accept(MediaType.ALL))
+                .andExpect(status().isOk())
+                .andExpect(view().name("/view/admin"));
+    }
+
+    //test for navigating to translate page
+    @Test
+    public void getViewTest() throws Exception {
+        this.mockMvc.perform(get("/translate")
+                .accept(MediaType.ALL))
+                .andExpect(status().isOk())
+                .andExpect(view().name("/view/translate"));
     }
 
 

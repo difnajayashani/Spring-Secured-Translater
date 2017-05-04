@@ -15,8 +15,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
- * Created by hsenid on 5/3/17.
- */
+* Created by hsenid on 5/3/17.
+*/
 public class HttpClientClass {
 
     /** URL to send the request to the API to obtain the language list*/

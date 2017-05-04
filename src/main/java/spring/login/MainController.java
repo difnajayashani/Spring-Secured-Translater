@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 public class MainController {
@@ -23,11 +21,6 @@ public class MainController {
     @RequestMapping(value="/admin", method = RequestMethod.GET)
     public ModelAndView visitAdmin() {
         return new ModelAndView("admin");
-      /*  ModelAndView model = new ModelAndView("admin");
-        model.addObject("title", "Admministrator Control Panel");
-        model.addObject("message", "This page demonstrates how to use Spring security.");*/
-
-//        return model;
     }
 
     @RequestMapping(value="/home", method = RequestMethod.GET)
@@ -41,12 +34,10 @@ public class MainController {
 
         HttpClientClass clientObject=new HttpClientClass();
         ArrayList<String> list= clientObject.getLangs();
-        Map<String, Object> model = new HashMap<String, Object>();
-        //ModelAndView model = new ModelAndView("translate");
-        model.put("language_list", list);
+        ModelAndView model = new ModelAndView("translate");
+        model.addObject("language_list", list);
 
-
-        return new ModelAndView("translate","model",model);
+        return model;
 //        return new ModelAndView("translate");
     }
 }
