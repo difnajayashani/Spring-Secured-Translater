@@ -8,13 +8,13 @@
 
   Principal principal = (Principal)request.getUserPrincipal();
   session.setAttribute("casPrincipal", principal);
-//  session.setAttribute("username", request.getRemoteUser());
-  session.setAttribute("username1", principal.getName());
+  session.setAttribute("username", request.getRemoteUser());
+  //session.setAttribute("username1", principal.getName());
 
 %>
 <div>
 
-    <div><p>authenticated as  <%= session.getAttribute("username1")%></p> </div>
+    <div><p>authenticated as  <%= session.getAttribute("username")%></p> </div>
 
     <%--<%= session.getAttribute("username1")%>--%>
 

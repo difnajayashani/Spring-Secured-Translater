@@ -30,7 +30,7 @@
     </script>
 </head>
 <body>
-<jsp:include page="./header.jsp"/>
+<jsp:include page="header.jsp"/>
 
 <div id="heading">
     <h1>Translator Page </h1>
