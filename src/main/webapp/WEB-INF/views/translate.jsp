@@ -28,6 +28,12 @@
 
         }
     </script>
+
+    <script>
+        function resetFunction() {
+            document.getElementById("translater").reset();
+        }
+    </script>
 </head>
 <body>
 <jsp:include page="header.jsp"/>
@@ -65,9 +71,9 @@
 
 
 
-                                    <c:forEach varStatus="i" items="${model.language_list}">
+                                    <c:forEach varStatus="i" items="${language_list}">
 
-                                                <option>${model.language_list[i]}</option>
+                                                <option>${language_list[i]}</option>
 
                                     </c:forEach>
 

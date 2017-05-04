@@ -22,12 +22,12 @@ public class HttpClientClass {
     /** URL to send the request to the API to obtain the language list*/
     static final String PostUrl = "https://translate.yandex.net/api/v1.5/tr/getLangs?key=trnsl.1.1.20170503T100221Z.4368a98a5bf8695f.8e5ad4958ffe22ab6cadefa6a54bb7be12111796";
 
+
+    //for testing
     public static void main(String[] args) throws Exception {
-
-
         /** for testing purpose of this class*/
-        String  ex2 = translate_text("en", "ru", "Hello");
-        System.out.println(ex2);
+       // String  ex2 = translate_text("en", "ru", "Hello");
+        //System.out.println(ex2);
 
         //ArrayList<String> ex1=getLangs();
         for (int i=0;i<30;i++){
@@ -81,7 +81,7 @@ public class HttpClientClass {
      * text_input => input string
      * */
 
-    public static String translate_text(String o_lan,String t_lan,String text_input) throws Exception {
+    public  String translate_text(String o_lan,String t_lan,String text_input) throws Exception {
 
 
         String output;
