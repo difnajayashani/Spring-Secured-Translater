@@ -6,8 +6,8 @@
 <head>
   <title>Welcome Page</title>
     <!-- CSS -->
-    <spring:url value="/resources/css/style.css" var="styleCss"/>
-    <link href="${styleCss}" rel="stylesheet">
+    <%--<spring:url value="/resources/css/style.css" var="styleCss"/>
+    <link href="${styleCss}" rel="stylesheet">--%>
 
   <style>
     #login-box {
@@ -46,9 +46,9 @@
 
 <div id="login-box">
 
-  <h3 style="text-align: center;">Click the button here to Login</h3>
+  <h3 style="text-align: center;">Click the button here to go to Login</h3>
 
-    <a href="https://localhost:8443/login" class="button">Login Button</a>
+    <a href="/login" class="button">Login Page</a>
 
 </div>
 

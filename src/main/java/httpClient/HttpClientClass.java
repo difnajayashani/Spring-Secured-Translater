@@ -20,26 +20,26 @@ import java.util.ArrayList;
 public class HttpClientClass {
 
     /** URL to send the request to the API to obtain the language list*/
-    static final String PostUrl = "https://translate.yandex.net/api/v1.5/tr/getLangs?key=trnsl.1.1.20170503T100221Z.4368a98a5bf8695f.8e5ad4958ffe22ab6cadefa6a54bb7be12111796";
+    static final String PostUrl = "https://translate.yandex.net/api/v1.5/tr/getLangs?ui=en&key=trnsl.1.1.20170503T100221Z.4368a98a5bf8695f.8e5ad4958ffe22ab6cadefa6a54bb7be12111796";
 
 
     //for testing
     public static void main(String[] args) throws Exception {
         /** for testing purpose of this class*/
-       // String  ex2 = translate_text("en", "ru", "Hello");
-        //System.out.println(ex2);
+       /* String  ex2 = translate_text("en", "ru", "Hello");
+        System.out.println(ex2);*/
 
-        //ArrayList<String> ex1=getLangs();
-        for (int i=0;i<30;i++){
-            //System.out.println(ex1[i]);
+       /* ArrayList<String> ex1=getLangs();
+        for (String arr: ex1){
+           System.out.println(arr);
 
-        }
+        }*/
         System.out.println("TRANS DONE");
     }
 
 
     /** function to get the language list */
-    public ArrayList<String> getLangs() throws Exception {
+    public  ArrayList<String> getLangs() throws Exception {
 
         CloseableHttpClient client = HttpClientBuilder.create().build();
         //send the request

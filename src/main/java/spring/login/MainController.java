@@ -7,30 +7,43 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.util.ArrayList;
 
 @Controller
+@EnableWebMvc
 public class MainController {
 
 
 
+    //to give the welcome page
     @RequestMapping(value="/", method = RequestMethod.GET)
     public ModelAndView visitWelcome() {
         return new ModelAndView("welcome");
     }
 
+    //to gives the custom login page
+    @RequestMapping(value="/login", method = RequestMethod.GET)
+    public ModelAndView login() {
+        return new ModelAndView("login");
+    }
+
+
+    //to give the admin page only for customers
     @RequestMapping(value="/admin", method = RequestMethod.GET)
     public ModelAndView visitAdmin() {
         return new ModelAndView("admin");
     }
 
+    //to give the home page for normal logged in users
     @RequestMapping(value="/home", method = RequestMethod.GET)
     public ModelAndView visitHome() {
         return new ModelAndView("home");
 
     }
 
+    //
     @RequestMapping(value="/translate", method = RequestMethod.GET)
     public ModelAndView visitTranslate() throws Exception {
 

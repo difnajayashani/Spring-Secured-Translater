@@ -33,8 +33,8 @@
 <jsp:include page="header.jsp"/>
 <div id="heading">
 
-  <h1>Admin Page </h1>
-  <a href="https://localhost:8443/translater">link text</a>
+  <h1>Home Page </h1>
+  <a href="/translate">Go to Translator</a>
 
 </div>
 

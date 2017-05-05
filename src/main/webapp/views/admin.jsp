@@ -34,7 +34,7 @@
 <div id="heading">
 
        <h1>Admin Page </h1>
-      <a class="button" href="https://localhost:8443/translate">Translator</a>
+      <a href="/translate">Go to Translator</a>
 
 </div>
 
