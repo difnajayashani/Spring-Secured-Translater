@@ -32,20 +32,13 @@
 
                 <center>
 
-                    <form class="form-horizontal" role="form" method="get" action="translate" id="translater"
+                    <form class="form-horizontal" role="form" method="get" action="/translate" id="translater"
                               >
                         <div class="form-group ">
-
-                                    <textarea name="original-text" class="form-control" id="original-text" rows="10"
-                                              cols="40">
-
-                                    </textarea>
+                            <textarea name="original-text" class="form-control" id="original-text" rows="10"cols="40"></textarea>
 
 
-                                    <textarea class="form-control"  name="translated-text" id="text_trans" rows="10"
-                                              cols="40">
-                                    </textarea>
-
+                            <textarea class="form-control"  name="translated-text" id="text_trans" rows="10" cols="40">${translated_text}</textarea>
                         </div>
                         <br>
 
@@ -55,6 +48,7 @@
                                  width: 200px; padding:0px; position:absolute;">
 
                                     <c:forEach items="${language_list}" var="language">
+
                                         <option value="<c:out value="${language}" />"><c:out value="${language}"/></option>
                                     </c:forEach>
 
