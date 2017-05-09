@@ -70,8 +70,8 @@ public class MainController {
     public ModelAndView visitTranslate() throws Exception {
 
 
-        //HashMap<String, String> language_list = clientObject.getLangs();
-        HashMap<String, String> language_list = restTemplate.getLangs();
+        HashMap<String, String> language_list = clientObject.getLangs();
+        //HashMap<String, String> language_list = restTemplate.getLangs();
 
         ModelAndView model = new ModelAndView();
         model.addObject("language_list",language_list);
@@ -88,14 +88,14 @@ public class MainController {
                              @RequestParam("original_text") String original_text) throws Exception {
 
 
-        //String transText= clientObject.translate_text(from_lang,to_lang,original_text);
-         String transText= restTemplate.translate_text(from_lang,to_lang,original_text);
+        String transText= clientObject.translate_text(from_lang,to_lang,original_text);
+        //String transText= restTemplate.translate_text(from_lang,to_lang,original_text);
 
         ModelAndView model = new ModelAndView();
 
         model.addObject("translated_text", transText);
-        //model.addObject("language_list",clientObject.getLangs());
-        model.addObject("language_list",restTemplate.getLangs());
+        model.addObject("language_list",clientObject.getLangs());
+       // model.addObject("language_list",restTemplate.getLangs());
 
         model.setViewName("translate");
         return model;

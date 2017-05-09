@@ -10,15 +10,9 @@
     <spring:url value="/resources/js/translator.js" var="jqueryJs"/>
     <script src="${jqueryJs}"></script>
 
-    <style>
+    <spring:url value="/resources/css/translate.css" var="translateCss"/>
+    <link href="${translateCss}" rel="stylesheet">
 
-        #heading{
-            text-align: center;
-            font-size: 40px;
-            color: #243ab1;
-        }
-
-    </style>
 </head>
 <body>
 <jsp:include page="header.jsp"/>
@@ -32,10 +26,10 @@
 
                 <center>
 
-                    <form class="form-horizontal" role="form" method="get" action="/translate" id="translater"
+                    <form class="form-horizontal" role="form" method="get" action="/translatedText" id="translater"
                               >
                         <div class="form-group ">
-                            <textarea name="original-text" class="form-control" id="original-text" rows="10"cols="40"></textarea>
+                            <textarea name="original_text" class="form-control" id="original-text" rows="10"cols="40"></textarea>
 
 
                             <textarea class="form-control"  name="translated-text" id="text_trans" rows="10" cols="40">${translated_text}</textarea>
@@ -49,7 +43,7 @@
 
                                     <c:forEach items="${language_list}" var="language">
 
-                                        <option value="<c:out value="${language}" />"><c:out value="${language}"/></option>
+                                        <option value="<c:out value="${language.key}" />"><c:out value="${language.value}"/></option>
                                     </c:forEach>
 
                                 </select>
@@ -60,7 +54,7 @@
                                  width: 200px; padding:0px; position:absolute;">
 
                                     <c:forEach items="${language_list}" var="language">
-                                        <option value="<c:out value="${language}" />"><c:out value="${language}"/></option>
+                                        <option value="<c:out value="${language.key}" />"><c:out value="${language.value}"/></option>
                                     </c:forEach>
                                 </select>
 
@@ -80,7 +74,7 @@
                                 <button type="button" class="btn btn-primary"  onclick="myFunction()">Swap</button>
 
 
-                                <input class="btn btn-primary"  type="button" onclick="resetFunction()" value="Reset" />
+                                <input  type="button" class="btn btn-primary" onclick="resetFunction()" value="Reset" />
                         </div>
                      </form>
                 </center>

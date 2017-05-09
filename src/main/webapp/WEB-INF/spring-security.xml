@@ -10,7 +10,7 @@
         <intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/home**" access="hasRole('ROLE_USER')" />
         <form-login
-
+                login-page="/login"
                 default-target-url="/admin"
                 always-use-default-target="false"
                 authentication-failure-url="/login?error"
@@ -18,7 +18,7 @@
                 username-parameter="username"
                 password-parameter="password" />
         <logout logout-success-url="/login?logout" />
-        <csrf disabled="true" />
+        <csrf disabled="false" />
     </http>
 
     <beans:bean id="myAuthenticationSuccessHandler"
