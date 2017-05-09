@@ -85,7 +85,8 @@ public class MainController {
     @RequestMapping(value="/translatedText", method = RequestMethod.GET)
     public ModelAndView getTranslatedText(@RequestParam("original-lang") String from_lang,
                              @RequestParam("translate-lang") String to_lang,
-                             @RequestParam("original_text") String original_text) throws Exception {
+                             @RequestParam("original_text") String original_text,
+                             @RequestParam("selectedOl") String selectedOl) throws Exception {
 
 
         String transText= clientObject.translate_text(from_lang,to_lang,original_text);
@@ -93,6 +94,9 @@ public class MainController {
 
         ModelAndView model = new ModelAndView();
 
+        model.addObject("original_lang", from_lang);
+        model.addObject("translated_lang", to_lang);
+        model.addObject("original_text", original_text);
         model.addObject("translated_text", transText);
         model.addObject("language_list",clientObject.getLangs());
        // model.addObject("language_list",restTemplate.getLangs());

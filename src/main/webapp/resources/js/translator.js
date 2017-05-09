@@ -14,4 +14,10 @@
         document.getElementById("translater").reset();
     }
 
+    $(document).ready(function(){
+        var e = document.getElementById("original");
+        var oLang = e.options[e.selectedIndex].text;
+        //$("#selectedOl").val(oLang);
+        $("input[id=selectedOl]").val(oLang);
 
+    });

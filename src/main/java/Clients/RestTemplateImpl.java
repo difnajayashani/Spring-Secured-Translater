@@ -1,6 +1,6 @@
 package Clients;
 
-import com.google.gson.Gson;
+
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,7 +20,7 @@ public class RestTemplateImpl implements TranslateClients{
     static final String PostUrl = "https://translate.yandex.net/api/v1.5/tr.json/getLangs?ui=en&key=trnsl.1.1.20170503T100221Z.4368a98a5bf8695f.8e5ad4958ffe22ab6cadefa6a54bb7be12111796";
 
 
-    Gson gson = new Gson();
+
     RestTemplate restTemplate = new RestTemplate();
     String translatedText;
     JSONParser parser = new JSONParser();

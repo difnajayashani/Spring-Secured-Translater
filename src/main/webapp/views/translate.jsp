@@ -7,8 +7,8 @@
 <head>
     <title>Translater Page</title>
 
-    <spring:url value="/resources/js/translator.js" var="jqueryJs"/>
-    <script src="${jqueryJs}"></script>
+    <spring:url value="/resources/js/translator.js" var="translateJs"/>
+    <script src="${translateJs}"></script>
 
     <spring:url value="/resources/css/translate.css" var="translateCss"/>
     <link href="${translateCss}" rel="stylesheet">
@@ -29,10 +29,19 @@
                     <form class="form-horizontal" role="form" method="get" action="/translatedText" id="translater"
                               >
                         <div class="form-group ">
-                            <textarea name="original_text" class="form-control" id="original-text" rows="10"cols="40"></textarea>
+                            <c:set var = "original" scope = "session" value = "${original_text}"/>
 
+                            <c:if test="${not empty original}">
+                                <textarea name="original_text" class="form-control" id="original-text" rows="10"cols="40">${original}</textarea>
+
+                            </c:if>
+                            <c:if test="${empty original}">
+                                <textarea name="original_text" class="form-control" id="original-text" rows="10"cols="40"></textarea>
+
+                            </c:if>
 
                             <textarea class="form-control"  name="translated-text" id="text_trans" rows="10" cols="40">${translated_text}</textarea>
+
                         </div>
                         <br>
 
@@ -40,12 +49,19 @@
 
                                 <select class="form-control" name="original-lang" id="original" style="margin: 0 -250px;
                                  width: 200px; padding:0px; position:absolute;">
+                                    <c:set var = "ol" scope = "session" value = "${original_lang}"/>
 
                                     <c:forEach items="${language_list}" var="language">
+                                        <c:choose>
+                                            <c:when test="${ol != null}">
+                                                <option selected="selected"><c:out value="${ol}"/></option>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <option value="<c:out value="${language.key}" />"><c:out value="${language.value}"/></option>
 
-                                        <option value="<c:out value="${language.key}" />"><c:out value="${language.value}"/></option>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </c:forEach>
-
                                 </select>
 
 
@@ -53,6 +69,7 @@
                                 <select class="form-control" name="translate-lang" id="translated" style="margin:0 70px;
                                  width: 200px; padding:0px; position:absolute;">
 
+                                    <c:set var = "tl" scope = "session" value = "${translated_lang}"/>
                                     <c:forEach items="${language_list}" var="language">
                                         <option value="<c:out value="${language.key}" />"><c:out value="${language.value}"/></option>
                                     </c:forEach>

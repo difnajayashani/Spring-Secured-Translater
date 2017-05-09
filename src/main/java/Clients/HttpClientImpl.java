@@ -109,7 +109,4 @@ public class HttpClientImpl implements TranslateClients {
 
         return output;
     }
-
-
-
 }
