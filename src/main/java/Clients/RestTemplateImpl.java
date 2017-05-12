@@ -68,6 +68,14 @@ public class RestTemplateImpl implements TranslateClients{
      * t_lan => language for the string to be translated
      * text_input => input string
      * */
+    /**
+     *
+     * @param o_lan
+     * @param t_lan
+     * @param text_input
+     * @return
+     * @throws JSONException
+     */
     public  String translate_text(String o_lan,String t_lan,String text_input) throws JSONException {
         RestTemplate restTemplate = new RestTemplate();
         String translatedResponse;

@@ -12,14 +12,18 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.Properties;
 
 @Service
 public class HttpClientImpl implements TranslateClients {
 
+    PropertyFileReader properties=new PropertyFileReader();
+
     /** URL to send the request to the API to obtain the language list*/
-    static final String PostUrl = "https://translate.yandex.net/api/v1.5/tr/getLangs?ui=en&key=trnsl.1.1.20170503T100221Z.4368a98a5bf8695f.8e5ad4958ffe22ab6cadefa6a54bb7be12111796";
+    final String PostUrl = properties.getproperty("languagelist.url","system.properties");
 
 
     //for testing
@@ -85,8 +89,11 @@ public class HttpClientImpl implements TranslateClients {
 
 
         String output;
+
+        String url=properties.getproperty("translate.url","system.properties");
+
         /** URL sent to the API to get the string translated*/
-        String transUrl="https://translate.yandex.net/api/v1.5/tr/translate?key=trnsl.1.1.20170503T100221Z.4368a98a5bf8695f.8e5ad4958ffe22ab6cadefa6a54bb7be12111796&lang="+o_lan+"-"+t_lan+"&text="+text_input;
+        final String transUrl=url+o_lan+"-"+t_lan+"&text="+text_input;
 
         /**send the request to the server thorough HttpClient*/
         org.apache.http.client.HttpClient httpClient_translate = new DefaultHttpClient();

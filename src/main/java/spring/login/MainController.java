@@ -38,7 +38,6 @@ public class MainController {
     public ModelAndView login(@RequestParam(value = "error", required = false) String error,
                               @RequestParam(value = "logout", required = false) String logout) {
 
-
         ModelAndView model = new ModelAndView();
         if (error != null) {
             model.addObject("error", "Invalid username and password!");
@@ -62,7 +61,6 @@ public class MainController {
     @RequestMapping(value="/home", method = RequestMethod.GET)
     public ModelAndView visitHome() {
         return new ModelAndView("home");
-
     }
 
     //to give the translate page and load the language list
@@ -85,8 +83,8 @@ public class MainController {
     @RequestMapping(value="/translatedText", method = RequestMethod.GET)
     public ModelAndView getTranslatedText(@RequestParam("original-lang") String from_lang,
                              @RequestParam("translate-lang") String to_lang,
-                             @RequestParam("original_text") String original_text,
-                             @RequestParam("selectedOl") String selectedOl) throws Exception {
+                             @RequestParam("original_text") String original_text
+                            ) throws Exception {
 
 
         String transText= clientObject.translate_text(from_lang,to_lang,original_text);

@@ -53,8 +53,8 @@
 
                                     <c:forEach items="${language_list}" var="language">
                                         <c:choose>
-                                            <c:when test="${ol != null}">
-                                                <option selected="selected"><c:out value="${ol}"/></option>
+                                            <c:when test="${ol == language.key}">
+                                                <option selected="selected" value="<c:out value="${language.key}" />"><c:out value="${language.value}"/></option>
                                             </c:when>
                                             <c:otherwise>
                                                 <option value="<c:out value="${language.key}" />"><c:out value="${language.value}"/></option>
@@ -68,10 +68,16 @@
 
                                 <select class="form-control" name="translate-lang" id="translated" style="margin:0 70px;
                                  width: 200px; padding:0px; position:absolute;">
-
                                     <c:set var = "tl" scope = "session" value = "${translated_lang}"/>
                                     <c:forEach items="${language_list}" var="language">
-                                        <option value="<c:out value="${language.key}" />"><c:out value="${language.value}"/></option>
+                                        <c:choose>
+                                            <c:when test="${tl == language.key}">
+                                                <option selected="selected" value="<c:out value="${language.key}" />"><c:out value="${language.value}"/></option>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <option value="<c:out value="${language.key}" />"><c:out value="${language.value}"/></option>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </c:forEach>
                                 </select>
 
