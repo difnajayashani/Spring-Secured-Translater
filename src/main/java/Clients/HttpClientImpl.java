@@ -12,18 +12,18 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
-import java.util.Properties;
+
 
 @Service
 public class HttpClientImpl implements TranslateClients {
 
-    PropertyFileReader properties=new PropertyFileReader();
+    PropertyFileReader property=new PropertyFileReader();
 
     /** URL to send the request to the API to obtain the language list*/
-    final String PostUrl = properties.getproperty("languagelist.url","system.properties");
+    final String PostUrl = property.getproperty("yandexXmlUrl","system.properties","getLangs",
+            "ui=en","","","","","");
 
 
     //for testing
@@ -78,22 +78,23 @@ public class HttpClientImpl implements TranslateClients {
 
     }
 
-    /** function to translate a input string to the given language using the HTTPClient Object when the
-     HTTP response is in XML format
-     * o_lan => language of the original string to be translated
-     * t_lan => language for the string to be translated
-     * text_input => input string
-     * */
-
+    /**
+     *
+     * @param o_lan language of the original string to be translated
+     * @param t_lan  language for the string to be translated
+     * @param text_input  input string
+     * @return  String with the translated text
+     * @throws Exception
+     */
     public String translate_text(String o_lan,String t_lan,String text_input) throws Exception {
 
 
         String output;
 
-        String url=properties.getproperty("translate.url","system.properties");
+        String transUrl=property.getproperty("yandexXmlUrl","system.properties","translate","text=",text_input, "&lang=",o_lan,"-",t_lan);
 
         /** URL sent to the API to get the string translated*/
-        final String transUrl=url+o_lan+"-"+t_lan+"&text="+text_input;
+        //final String transUrl=url+o_lan+"-"+t_lan+"&text="+text_input;
 
         /**send the request to the server thorough HttpClient*/
         org.apache.http.client.HttpClient httpClient_translate = new DefaultHttpClient();

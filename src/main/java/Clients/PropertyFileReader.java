@@ -17,8 +17,10 @@ public class PropertyFileReader {
     Properties properties = new Properties();
     ClassLoader classLoader = getClass().getClassLoader();
 
-    public String getproperty(String prop, String fileName) {
+    public String getproperty(String prop, String fileName,String param1, String param2
+            ,String param3,String param4,String param5,String param6,String param7) {
 
+        String outputUrl;
         InputStream stream = classLoader.getResourceAsStream(fileName);
 
         try {
@@ -37,7 +39,8 @@ public class PropertyFileReader {
                 }
             }
         }
-        return properties.getProperty(prop);
+        outputUrl=String.format(properties.getProperty(prop),param1,param2,param3,param4,param5,param6,param7);
+        return outputUrl;
     }
 
 }

@@ -16,9 +16,12 @@ import java.util.Map;
 public class RestTemplateImpl implements TranslateClients{
 
 
+    //instance of the Pproperty file reader
+    PropertyFileReader property=new PropertyFileReader();
 
-    static final String PostUrl = "https://translate.yandex.net/api/v1.5/tr.json/getLangs?ui=en&key=trnsl.1.1.20170503T100221Z.4368a98a5bf8695f.8e5ad4958ffe22ab6cadefa6a54bb7be12111796";
-
+    /** URL to send the request to the API to obtain the language list in JSON format*/
+    final String PostUrl = property.getproperty("yandexJsonUrl","system.properties","getLangs",
+            "ui=en","","","","","");
 
 
     RestTemplate restTemplate = new RestTemplate();
@@ -40,8 +43,9 @@ public class RestTemplateImpl implements TranslateClients{
     }
 
 
-    public  HashMap<String, String> getLangs() throws ParseException, JSONException, IOException {
 
+    //method to get the language list using Yandex API and the REST Template
+    public  HashMap<String, String> getLangs() throws ParseException, JSONException, IOException {
 
         //initiate an empty hashmap to load the output
         HashMap<String, String> result = null;
@@ -62,24 +66,22 @@ public class RestTemplateImpl implements TranslateClients{
     }
 
 
-    /** function to translate a input string to the given language using the REST Template when the HTTP
-     response is in JSON format
-     * o_lan => language of the original string to be translated
-     * t_lan => language for the string to be translated
-     * text_input => input string
-     * */
     /**
      *
-     * @param o_lan
-     * @param t_lan
-     * @param text_input
-     * @return
+     * @param o_lan language of the original string to be translated
+     * @param t_lan  language for the string to be translated
+     * @param text_input  input string
+     * @return  String with the translated text
      * @throws JSONException
      */
     public  String translate_text(String o_lan,String t_lan,String text_input) throws JSONException {
+
         RestTemplate restTemplate = new RestTemplate();
         String translatedResponse;
-        String transUrl="https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20170503T100221Z.4368a98a5bf8695f.8e5ad4958ffe22ab6cadefa6a54bb7be12111796&lang="+o_lan+"-"+t_lan+"&text="+text_input;
+
+        //url to get the translated language in jSON format
+        String transUrl=property.getproperty("yandexJsonUrl","system.properties","translate","text=",text_input, "&lang=",o_lan,"-",t_lan);
+
 
         translatedResponse=restTemplate.getForObject(transUrl,String.class);
         JSONObject translatedResponseJson= new JSONObject(translatedResponse);
