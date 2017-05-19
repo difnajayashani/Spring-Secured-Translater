@@ -17,8 +17,8 @@ public class PropertyFileReader {
     Properties properties = new Properties();
     ClassLoader classLoader = getClass().getClassLoader();
 
-    public String getproperty(String prop, String fileName,String param1, String param2
-            ,String param3,String param4,String param5,String param6,String param7) {
+    public String getproperty(String prop, String fileName,String urlParameter1, String urlParameter2
+            ,String urlParameter3,String urlParameter4,String urlParameter5,String urlParameter6,String urlParameter7) {
 
         String outputUrl;
         InputStream stream = classLoader.getResourceAsStream(fileName);
@@ -28,7 +28,7 @@ public class PropertyFileReader {
             properties.load(stream);
         } catch (IOException e) {
             //LOGGER.error("Error while getting properties..");
-        }
+        }/*
         finally {
             if (stream != null) {
                 try {
@@ -38,8 +38,8 @@ public class PropertyFileReader {
                     //LOGGER.fatal("Error while closing property stream..", ex);
                 }
             }
-        }
-        outputUrl=String.format(properties.getProperty(prop),param1,param2,param3,param4,param5,param6,param7);
+        }*/
+        outputUrl=String.format(properties.getProperty(prop),urlParameter1,urlParameter2,urlParameter3,urlParameter4,urlParameter5,urlParameter6,urlParameter7);
         return outputUrl;
     }
 

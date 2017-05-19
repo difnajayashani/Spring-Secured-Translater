@@ -22,8 +22,16 @@ public class HttpClientImpl implements TranslateClients {
     PropertyFileReader property=new PropertyFileReader();
 
     /** URL to send the request to the API to obtain the language list*/
-    final String PostUrl = property.getproperty("yandexXmlUrl","system.properties","getLangs",
-            "ui=en","","","","","");
+    final String postUrl = property.getproperty(
+            "yandexXmlUrl",
+            "system.properties",
+            "getLangs",
+            "ui=en",
+            "",
+            "",
+            "",
+            "",
+            "");
 
 
     //for testing
@@ -42,7 +50,7 @@ public class HttpClientImpl implements TranslateClients {
 
         CloseableHttpClient client = HttpClientBuilder.create().build();
         //send the request
-        HttpPost request = new HttpPost(PostUrl);
+        HttpPost request = new HttpPost(postUrl);
 
         //excute the request to obtain the response
         CloseableHttpResponse response = client.execute(request);
@@ -80,21 +88,29 @@ public class HttpClientImpl implements TranslateClients {
 
     /**
      *
-     * @param o_lan language of the original string to be translated
-     * @param t_lan  language for the string to be translated
+     * @param fromLanguage language of the original string to be translated
+     * @param toLanguage  language for the string to be translated
      * @param text_input  input string
      * @return  String with the translated text
      * @throws Exception
      */
-    public String translate_text(String o_lan,String t_lan,String text_input) throws Exception {
+    public String translate_text(String fromLanguage,String toLanguage,String text_input) throws Exception {
 
 
         String output;
 
-        String transUrl=property.getproperty("yandexXmlUrl","system.properties","translate","text=",text_input, "&lang=",o_lan,"-",t_lan);
+        String transUrl=property.getproperty(
+                "yandexXmlUrl",
+                "system.properties",
+                "translate",
+                "text=",
+                 text_input,
+                "&lang=",
+                fromLanguage,
+                "-",toLanguage);
 
         /** URL sent to the API to get the string translated*/
-        //final String transUrl=url+o_lan+"-"+t_lan+"&text="+text_input;
+        //final String transUrl=url+fromLanguage+"-"+toLanguage+"&text="+text_input;
 
         /**send the request to the server thorough HttpClient*/
         org.apache.http.client.HttpClient httpClient_translate = new DefaultHttpClient();
