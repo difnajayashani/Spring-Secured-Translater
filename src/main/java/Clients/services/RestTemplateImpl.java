@@ -1,6 +1,8 @@
-package Clients;
+package Clients.services;
 
 
+import Clients.PropertyFileReader;
+import Clients.interfaces.TranslateClients;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class RestTemplateImpl implements TranslateClients{
+public class RestTemplateImpl implements TranslateClients {
 
 
     //instance of the Pproperty file reader

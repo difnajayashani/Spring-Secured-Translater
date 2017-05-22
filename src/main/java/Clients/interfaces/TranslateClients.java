@@ -1,4 +1,4 @@
-package Clients;
+package Clients.interfaces;
 
 import org.json.JSONException;
 import org.json.simple.parser.ParseException;

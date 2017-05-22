@@ -1,5 +1,7 @@
-package Clients;
+package Clients.services;
 
+import Clients.PropertyFileReader;
+import Clients.interfaces.TranslateClients;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -41,7 +43,11 @@ public class HttpClientImpl implements TranslateClients {
         String  ex2 = client.translate_text("en", "ru", "Hello");
         System.out.println(ex2);
 
+
         System.out.println("TRANS DONE");
+
+        HashMap<String, String> s= client.getLangs();
+        System.out.println(s);
     }
 
 

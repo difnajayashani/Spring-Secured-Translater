@@ -13,16 +13,19 @@
 
 
     <!-- Enables the Spring MVC @Controller programming model -->
-    <!--<context:annotation-config />-->
+    <context:annotation-config />
     <!--<annotation-driven />-->
     <context:component-scan base-package="spring.login" />
 
     <mvc:resources mapping="/resources/**" location="/resources/" />
 
-    <beans:bean id="clientObject"
-                class="Clients.HttpClientImpl" />
-    <beans:bean id="restTemplate"
-                class="Clients.RestTemplateImpl" />
+    <beans:bean id="mainController"
+                class="spring.login.MainController" />
+<!--    <beans:bean id="restTemplate"
+                claClients.services.RestTemplateImplImpl" />-->
+
+    <beans:bean id="connectorFactory"
+                class="Clients.client_factory.TranslateClientsFactory" />
 
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
     <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

@@ -1,7 +1,6 @@
 package spring.login;
 
-import Clients.HttpClientImpl;
-import Clients.RestTemplateImpl;
+import Clients.client_factory.TranslateClientsFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,10 +21,10 @@ import java.util.HashMap;
 public class MainController {
 
     @Autowired
-    HttpClientImpl clientObject;
+    TranslateClientsFactory connectorFactory;
 
-    @Autowired
-    RestTemplateImpl restTemplate;
+
+
 
     //to give the welcome page
     @RequestMapping(value="/", method = RequestMethod.GET)
@@ -68,7 +67,7 @@ public class MainController {
     public ModelAndView visitTranslate() throws Exception {
 
 
-       HashMap<String, String> language_list = clientObject.getLangs();
+       HashMap<String, String> language_list = connectorFactory.getClient().getLangs();
        // HashMap<String, String> language_list = restTemplate.getLangs();
 
         ModelAndView model = new ModelAndView();
@@ -87,7 +86,7 @@ public class MainController {
                             ) throws Exception {
 
 
-        String transText= clientObject.translate_text(from_lang,to_lang,original_text);
+        String transText= connectorFactory.getClient().translate_text(from_lang,to_lang,original_text);
        // String transText= restTemplate.translate_text(from_lang,to_lang,original_text);
 
         ModelAndView model = new ModelAndView();
@@ -96,7 +95,7 @@ public class MainController {
         model.addObject("translated_lang", to_lang);
         model.addObject("original_text", original_text);
         model.addObject("translated_text", transText);
-        model.addObject("language_list",clientObject.getLangs());
+        model.addObject("language_list",connectorFactory.getClient().getLangs());
        // model.addObject("language_list",restTemplate.getLangs());
 
         model.setViewName("translate");
