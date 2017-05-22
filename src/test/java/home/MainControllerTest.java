@@ -42,7 +42,7 @@ public class MainControllerTest extends AbstractTestNGSpringContextTests {
         this.mockMvc.perform(get("/")
                 .accept(MediaType.ALL))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/view/welcome"));
+                .andExpect(view().name("welcome"));
     }
 
     //test for navigating to admin page
@@ -51,7 +51,7 @@ public class MainControllerTest extends AbstractTestNGSpringContextTests {
         this.mockMvc.perform(get("/admin")
                 .accept(MediaType.ALL))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/view/admin"));
+                .andExpect(view().name("admin"));
     }
 
     //test for navigating to translate page
@@ -60,7 +60,7 @@ public class MainControllerTest extends AbstractTestNGSpringContextTests {
         this.mockMvc.perform(get("/translate")
                 .accept(MediaType.ALL))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/view/translate"));
+                .andExpect(view().name("translate"));
     }
 
 
